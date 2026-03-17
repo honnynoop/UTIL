@@ -187,11 +187,9 @@ $$
 0 & 0 & 5
 \end{array}
 \right)
-\qquad
 \begin{array}{l}
-\Bigg\} \quad X_1\text{-}X_2 \text{ 블록 }(\text{수학-과학},\, 2\times 2) \\
-\\
-\Big\} \quad X_3 \text{ 블록 }(\text{영어},\, 1\times 1)
+\left.\rule{0pt}{2.5em}\right\} \ X_1\text{-}X_2 \text{ 블록 (수학-과학, } 2\times 2) \\[1.2em]
+\left.\rule{0pt}{1.2em}\right\} \ X_3 \text{ 블록 (영어, } 1\times 1)
 \end{array}
 \]
 
