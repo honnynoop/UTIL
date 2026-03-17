@@ -50,29 +50,31 @@ $$
 
 ### 내적 계산으로 공분산 확인
 
-$$
-\tilde{\mathbf{x}}_1 \cdot \tilde{\mathbf{x}}_2
-= (4)(4) + (-4)(-4) + (2)(-2) + (-2)(2) + (0)(0)
-= 16 + 16 - 4 - 4 + 0 = 24
-\quad\Rightarrow\quad
-\text{Cov}(X_1, X_2) = \frac{24}{4} = \mathbf{6}
-$$
-
-$$
-\tilde{\mathbf{x}}_1 \cdot \tilde{\mathbf{x}}_3
-= (4)(1) + (-4)(1) + (2)(1) + (-2)(1) + (0)(-4)
-= 4 - 4 + 2 - 2 + 0 = 0
-\quad\Rightarrow\quad
-\text{Cov}(X_1, X_3) = \frac{0}{4} = \mathbf{0}
-$$
-
-$$
-\tilde{\mathbf{x}}_2 \cdot \tilde{\mathbf{x}}_3
-= (4)(1) + (-4)(1) + (-2)(1) + (2)(1) + (0)(-4)
-= 4 - 4 - 2 + 2 + 0 = 0
-\quad\Rightarrow\quad
-\text{Cov}(X_2, X_3) = \frac{0}{4} = \mathbf{0}
-$$
+\[
+\begin{pmatrix}
+10-16 & 6 & 0 \\
+6 & 10-16 & 0 \\
+0 & 0 & 5-16
+\end{pmatrix}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
+=
+\begin{pmatrix}
+-6 & 6 & 0 \\
+6 & -6 & 0 \\
+0 & 0 & -11
+\end{pmatrix}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
+=
+\mathbf{0}
+\]
 
 ---
 
