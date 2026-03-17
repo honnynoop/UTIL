@@ -177,21 +177,24 @@ $$
 > **구조 관찰:** $X_3$(영어)가 $X_1$, $X_2$ 모두와 무상관이므로  
 > 3행·3열이 나머지 블록과 완전히 분리된 **블록 대각 행렬** 구조가 된다.
 
-$$
+\[
 \Sigma =
-\left(\begin{array}{cc|c}
+\left(
+\begin{array}{cc|c}
 10 & 6 & 0 \\
 6 & 10 & 0 \\
 \hline
 0 & 0 & 5
-\end{array}\right)
+\end{array}
+\right)
 \qquad
 \begin{array}{l}
-\Bigg\} \quad X_1\text{-}X_2 \text{ 블록 (수학-과학, 2}\times\text{2)} \\
+\Bigg\} \quad X_1\text{-}X_2 \text{ 블록 }(\text{수학-과학},\, 2\times 2) \\
 \\
-\Big\} \quad X_3 \text{ 블록 (영어, 1}\times\text{1)}
+\Big\} \quad X_3 \text{ 블록 }(\text{영어},\, 1\times 1)
 \end{array}
-$$
+\]
+
 
 ---
 
