@@ -2,7 +2,6 @@
 
 > **변수 설정:** $X_1$ = 수학, $X_2$ = 과학, $X_3$ = 영어
 
-
 ## 시각적 개요 — PCA 세 예제 비교
 
 ![PCA 세 예제 비교 — 산점도 + 주성분 축](pca_three_examples.png)
@@ -32,12 +31,12 @@
 
 ## 1. 데이터 설계 원리
 
-평균 중심화 벡터 $\tilde{\mathbf{x}}_j$ 를 먼저 설계한다 ($n = 5$, $\text{ddof} = 1$).
+평균 중심화 벡터 $\tilde{\mathbf{x}}_j$를 먼저 설계한다 ($n = 5$, $\mathrm{ddof} = 1$).
 
 $$
-\text{Var}(X_j) = \frac{\tilde{\mathbf{x}}_j \cdot \tilde{\mathbf{x}}_j}{n-1},
+\mathrm{Var}(X_j) = \frac{\tilde{\mathbf{x}}_j \cdot \tilde{\mathbf{x}}_j}{n-1},
 \qquad
-\text{Cov}(X_j, X_k) = \frac{\tilde{\mathbf{x}}_j \cdot \tilde{\mathbf{x}}_k}{n-1}
+\mathrm{Cov}(X_j, X_k) = \frac{\tilde{\mathbf{x}}_j \cdot \tilde{\mathbf{x}}_k}{n-1}
 $$
 
 설계한 중심화 벡터:
@@ -55,7 +54,7 @@ $$
 = (4)(4) + (-4)(-4) + (2)(-2) + (-2)(2) + (0)(0)
 = 16 + 16 - 4 - 4 + 0 = 24
 \quad\Rightarrow\quad
-\text{Cov}(X_1, X_2) = \frac{24}{4} = \mathbf{6}
+\mathrm{Cov}(X_1, X_2) = \frac{24}{4} = \mathbf{6}
 $$
 
 $$
@@ -63,7 +62,7 @@ $$
 = (4)(1) + (-4)(1) + (2)(1) + (-2)(1) + (0)(-4)
 = 4 - 4 + 2 - 2 + 0 = 0
 \quad\Rightarrow\quad
-\text{Cov}(X_1, X_3) = \frac{0}{4} = \mathbf{0}
+\mathrm{Cov}(X_1, X_3) = \frac{0}{4} = \mathbf{0}
 $$
 
 $$
@@ -71,14 +70,14 @@ $$
 = (4)(1) + (-4)(1) + (-2)(1) + (2)(1) + (0)(-4)
 = 4 - 4 - 2 + 2 + 0 = 0
 \quad\Rightarrow\quad
-\text{Cov}(X_2, X_3) = \frac{0}{4} = \mathbf{0}
+\mathrm{Cov}(X_2, X_3) = \frac{0}{4} = \mathbf{0}
 $$
 
 ---
 
 ## 2. 원본 데이터 행렬
 
-평균: $\bar{X}_1 = 50$ (수학), $\quad \bar{X}_2 = 60$ (과학), $\quad \bar{X}_3 = 70$ (영어)
+평균: $\bar{X}_1 = 50$ (수학), $\bar{X}_2 = 60$ (과학), $\bar{X}_3 = 70$ (영어)
 
 | 학생 | 수학 $X_1$ | 과학 $X_2$ | 영어 $X_3$ |
 |:----:|:---------:|:---------:|:---------:|
@@ -107,12 +106,13 @@ $$
 중심화 행렬 $\tilde{X} = X - \mathbf{1}\bar{\mathbf{x}}^T$:
 
 $$
-\tilde{X} = \begin{pmatrix}
- 4 &  4 &  1 \\
--4 & -4 &  1 \\
- 2 & -2 &  1 \\
--2 &  2 &  1 \\
- 0 &  0 & -4
+\tilde{X} =
+\begin{pmatrix}
+4 & 4 & 1 \\
+-4 & -4 & 1 \\
+2 & -2 & 1 \\
+-2 & 2 & 1 \\
+0 & 0 & -4
 \end{pmatrix}
 $$
 
@@ -122,43 +122,45 @@ $$
 | B    | -4                  | -4                  | +1                  |
 | C    | +2                  | -2                  | +1                  |
 | D    | -2                  | +2                  | +1                  |
-| E    |  0                  |  0                  | -4                  |
+| E    | 0                   | 0                   | -4                  |
 
 ---
 
 ## 4. STEP 2 — 공분산 행렬
 
 $$
-\Sigma = \frac{1}{n-1}\,\tilde{X}^T \tilde{X} = \frac{1}{4}\,\tilde{X}^T \tilde{X}
+\Sigma = \frac{1}{n-1}\tilde{X}^T \tilde{X} = \frac{1}{4}\tilde{X}^T \tilde{X}
 $$
 
 ### 분산 계산
 
 $$
-\text{Var}(X_1) = \frac{4^2 + (-4)^2 + 2^2 + (-2)^2 + 0^2}{4}
+\mathrm{Var}(X_1) = \frac{4^2 + (-4)^2 + 2^2 + (-2)^2 + 0^2}{4}
 = \frac{16+16+4+4+0}{4} = \frac{40}{4} = \mathbf{10}
 $$
 
 $$
-\text{Var}(X_2) = \frac{4^2 + (-4)^2 + (-2)^2 + 2^2 + 0^2}{4}
+\mathrm{Var}(X_2) = \frac{4^2 + (-4)^2 + (-2)^2 + 2^2 + 0^2}{4}
 = \frac{16+16+4+4+0}{4} = \frac{40}{4} = \mathbf{10}
 $$
 
 $$
-\text{Var}(X_3) = \frac{1^2 + 1^2 + 1^2 + 1^2 + (-4)^2}{4}
+\mathrm{Var}(X_3) = \frac{1^2 + 1^2 + 1^2 + 1^2 + (-4)^2}{4}
 = \frac{1+1+1+1+16}{4} = \frac{20}{4} = \mathbf{5}
 $$
 
 ### 공분산 계산
 
 $$
-\text{Cov}(X_1, X_2)
+\mathrm{Cov}(X_1, X_2)
 = \frac{(4)(4)+(-4)(-4)+(2)(-2)+(-2)(2)+(0)(0)}{4}
 = \frac{16+16-4-4+0}{4} = \frac{24}{4} = \mathbf{6}
 $$
 
 $$
-\text{Cov}(X_1, X_3) = \mathbf{0}, \qquad \text{Cov}(X_2, X_3) = \mathbf{0}
+\mathrm{Cov}(X_1, X_3) = \mathbf{0},
+\qquad
+\mathrm{Cov}(X_2, X_3) = \mathbf{0}
 $$
 
 ### 공분산 행렬
@@ -177,7 +179,92 @@ $$
 > **구조 관찰:** $X_3$(영어)가 $X_1$, $X_2$ 모두와 무상관이므로  
 > 3행·3열이 나머지 블록과 완전히 분리된 **블록 대각 행렬** 구조가 된다.
 
-\[
+$$
+\Sigma =
+\left(
+\begin{array}{cc|c}
+10 & 6 & 0 \\
+6 & 10 & 0 \\
+\hline
+0 & 0 & 5
+\end{array}
+\right)
+\qquad
+\begin{array}{l}
+\Bigg\} \quad X_1\text{-}X_2 \text{ 블록 }(\text{수학-과학},\, 2\times 2) \\
+\\
+\Big\} \quad X_3 \text{ 블록 }(\text{영어},\, 1\times 1)
+\end{array}
+$$
+
+---
+
+## 5. STEP 3 — 고유값 계산
+
+$$
+\det(\Sigma - \lambda I) = 0
+$$
+
+$$
+\det
+\begin{pmatrix}
+10 - \lambda & 6 & 0 \\
+6 & 10 - \lambda & 0 \\
+0 & 0 & 5 - \lambda
+\end{pmatrix}
+= 0
+$$
+
+3열로 여인수 전개(cofactor expansion):
+
+$$
+(5 - \lambda)
+\det
+\begin{pmatrix}
+10-\lambda & 6 \\
+6 & 10-\lambda
+\end{pmatrix}
+= 0
+$$
+
+$$
+(5 - \lambda)\left[(10-\lambda)^2 - 6^2\right] = 0
+$$
+
+$$
+(5 - \lambda)(10 - \lambda - 6)(10 - \lambda + 6) = 0
+$$
+
+$$
+(5 - \lambda)(4 - \lambda)(16 - \lambda) = 0
+$$
+
+$$
+\boxed{\lambda_1 = 16,\qquad \lambda_2 = 5,\qquad \lambda_3 = 4}
+$$
+
+---
+
+## 6. STEP 4 — 고유벡터 계산
+
+### 6-1. $\lambda_1 = 16$ 에 대한 $\mathbf{v}_1$
+
+$$
+(\Sigma - 16I)\mathbf{v} = \mathbf{0}
+$$
+
+$$
+\begin{pmatrix}
+10-16 & 6 & 0 \\
+6 & 10-16 & 0 \\
+0 & 0 & 5-16
+\end{pmatrix}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
+=
 \begin{pmatrix}
 -6 & 6 & 0 \\
 6 & -6 & 0 \\
@@ -190,86 +277,28 @@ v_3
 \end{pmatrix}
 =
 \mathbf{0}
-\]
-
-## 5. STEP 3 — 고유값 계산
-
-$$
-\det(\Sigma - \lambda I) = 0
-$$
-
-$$
-\det\begin{pmatrix}
-10 - \lambda & 6 & 0 \\
-6 & 10 - \lambda & 0 \\
-0 & 0 & 5 - \lambda
-\end{pmatrix} = 0
-$$
-
-3열로 여인수 전개(cofactor expansion):
-
-$$
-(5 - \lambda) \det\begin{pmatrix} 10-\lambda & 6 \\ 6 & 10-\lambda \end{pmatrix} = 0
-$$
-
-$$
-(5 - \lambda) \left[ (10-\lambda)^2 - 6^2 \right] = 0
-$$
-
-$$
-(5 - \lambda)(10 - \lambda - 6)(10 - \lambda + 6) = 0
-$$
-
-$$
-(5 - \lambda)(4 - \lambda)(16 - \lambda) = 0
-$$
-
-$$
-\boxed{\lambda_1 = 16, \qquad \lambda_2 = 5, \qquad \lambda_3 = 4}
-$$
-
----
-
-## 6. STEP 4 — 고유벡터 계산
-
-### 6-1. $\lambda_1 = 16$ 에 대한 $\mathbf{v}_1$
-
-$$
-(\Sigma - 16I)\,\mathbf{v} = \mathbf{0}
-$$
-
-$$
-\begin{pmatrix}
-10-16 & 6 & 0 \\
-6 & 10-16 & 0 \\
-0 & 0 & 5-16
-\end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
-=
-\begin{pmatrix}
--6 & 6 & 0 \\
-6 & -6 & 0 \\
-0 & 0 & -11
-\end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
-= \mathbf{0}
 $$
 
 **행별 전개:**
 
 $$
-\text{행 1}:\quad -6v_1 + 6v_2 + 0 \cdot v_3 = 0
-\quad\Rightarrow\quad v_1 = v_2
+\text{행 1}:\quad -6v_1 + 6v_2 + 0\cdot v_3 = 0
+\quad\Rightarrow\quad
+v_1 = v_2
 $$
 
 $$
-\text{행 2}:\quad 6v_1 - 6v_2 + 0 \cdot v_3 = 0
-\quad\Rightarrow\quad v_1 = v_2 \qquad (\text{행 1과 동일, 추가 정보 없음})
+\text{행 2}:\quad 6v_1 - 6v_2 + 0\cdot v_3 = 0
+\quad\Rightarrow\quad
+v_1 = v_2
+\qquad
+(\text{행 1과 동일, 추가 정보 없음})
 $$
 
 $$
-\text{행 3}:\quad 0 \cdot v_1 + 0 \cdot v_2 - 11 v_3 = 0
-\quad\Rightarrow\quad v_3 = 0
+\text{행 3}:\quad 0\cdot v_1 + 0\cdot v_2 - 11v_3 = 0
+\quad\Rightarrow\quad
+v_3 = 0
 $$
 
 **가우스 소거:**
@@ -282,13 +311,20 @@ R_2 \leftarrow R_2 + R_1
 0 & 0 & 0 \\
 0 & 0 & -11
 \end{pmatrix}
-\quad \text{rank} = 2, \text{ 자유변수 1개}
+\quad
+\text{rank} = 2,\ \text{자유변수 1개}
 $$
 
-$v_2 = t$ (자유변수)로 놓으면 $v_1 = t,\ v_3 = 0$. $t = 1$을 대입하면:
+$v_2 = t$ (자유변수)로 놓으면 $v_1 = t,\ v_3 = 0$.  
+$t = 1$을 대입하면
 
 $$
-\mathbf{v}_1^{*} = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix},
+\mathbf{v}_1^{*} =
+\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix},
 \qquad
 \|\mathbf{v}_1^{*}\| = \sqrt{1^2 + 1^2 + 0^2} = \sqrt{2}
 $$
@@ -297,21 +333,32 @@ $$
 
 $$
 \boxed{
-\mathbf{v}_1 = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}
-= \begin{pmatrix} 0.7071 \\ 0.7071 \\ 0 \end{pmatrix}
+\mathbf{v}_1 =
+\frac{1}{\sqrt{2}}
+\begin{pmatrix}
+1 \\
+1 \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+0.7071 \\
+0.7071 \\
+0
+\end{pmatrix}
 }
 $$
 
 > **해석:** $v_1 = v_2 = \frac{1}{\sqrt{2}}$, $v_3 = 0$  
 > → 수학($X_1$)과 과학($X_2$)을 동등한 비중으로 합산하는 방향  
-> → 영어($X_3$)는 이 주성분에 전혀 기여하지 않는다
+> → 영어($X_3$)는 이 주성분에 전혀 기여하지 않는다.
 
 ---
 
 ### 6-2. $\lambda_2 = 5$ 에 대한 $\mathbf{v}_2$
 
 $$
-(\Sigma - 5I)\,\mathbf{v} = \mathbf{0}
+(\Sigma - 5I)\mathbf{v} = \mathbf{0}
 $$
 
 $$
@@ -320,36 +367,46 @@ $$
 6 & 10-5 & 0 \\
 0 & 0 & 5-5
 \end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
 =
 \begin{pmatrix}
 5 & 6 & 0 \\
 6 & 5 & 0 \\
 0 & 0 & 0
 \end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
-= \mathbf{0}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
+=
+\mathbf{0}
 $$
 
 **행별 전개:**
 
 $$
-\text{행 1}:\quad 5v_1 + 6v_2 + 0 \cdot v_3 = 0
+\text{행 1}:\quad 5v_1 + 6v_2 + 0\cdot v_3 = 0
 $$
 
 $$
-\text{행 2}:\quad 6v_1 + 5v_2 + 0 \cdot v_3 = 0
+\text{행 2}:\quad 6v_1 + 5v_2 + 0\cdot v_3 = 0
 $$
 
 $$
 \text{행 3}:\quad 0 = 0
-\qquad (\text{항등식} \Rightarrow v_3 \text{ 은 자유변수})
+\qquad
+(\text{항등식} \Rightarrow v_3 \text{은 자유변수})
 $$
 
 **가우스 소거:**
 
 $$
-R_2 \leftarrow R_2 - \frac{6}{5} R_1
+R_2 \leftarrow R_2 - \frac{6}{5}R_1
 \quad\Rightarrow\quad
 \begin{pmatrix}
 5 & 6 & 0 \\
@@ -362,25 +419,35 @@ R_2 \leftarrow R_2 - \frac{6}{5} R_1
 0 & -\frac{11}{5} & 0 \\
 0 & 0 & 0
 \end{pmatrix}
-\quad \text{rank} = 2, \text{ 자유변수 1개}
+\quad
+\text{rank} = 2,\ \text{자유변수 1개}
 $$
 
-행 2에서:
+행 2에서
 
 $$
--\frac{11}{5} v_2 = 0 \quad\Rightarrow\quad v_2 = 0
+-\frac{11}{5}v_2 = 0
+\quad\Rightarrow\quad
+v_2 = 0
 $$
 
-행 1에서:
+행 1에서
 
 $$
-5 v_1 + 6(0) = 0 \quad\Rightarrow\quad v_1 = 0
+5v_1 + 6(0) = 0
+\quad\Rightarrow\quad
+v_1 = 0
 $$
 
-$v_3 = t$ (자유변수). $t = 1$을 대입하면:
+$v_3 = t$ (자유변수). $t = 1$을 대입하면
 
 $$
-\mathbf{v}_2^{*} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix},
+\mathbf{v}_2^{*} =
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix},
 \qquad
 \|\mathbf{v}_2^{*}\| = 1
 $$
@@ -389,21 +456,26 @@ $$
 
 $$
 \boxed{
-\mathbf{v}_2 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+\mathbf{v}_2 =
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
 }
 $$
 
 > **해석:** $v_1 = 0,\ v_2 = 0,\ v_3 = 1$  
-> → 오직 영어($X_3$) 방향만  
-> Cov($X_3$, $X_1$) = Cov($X_3$, $X_2$) = 0 이므로  
-> PCA가 영어를 회전 없이 독립적인 주성분으로 분리한 결과
+> → 오직 영어($X_3$) 방향만 나타낸다.  
+> $\mathrm{Cov}(X_3, X_1) = \mathrm{Cov}(X_3, X_2) = 0$ 이므로  
+> PCA가 영어를 회전 없이 독립적인 주성분으로 분리한 결과이다.
 
 ---
 
 ### 6-3. $\lambda_3 = 4$ 에 대한 $\mathbf{v}_3$
 
 $$
-(\Sigma - 4I)\,\mathbf{v} = \mathbf{0}
+(\Sigma - 4I)\mathbf{v} = \mathbf{0}
 $$
 
 $$
@@ -412,32 +484,44 @@ $$
 6 & 10-4 & 0 \\
 0 & 0 & 5-4
 \end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
 =
 \begin{pmatrix}
 6 & 6 & 0 \\
 6 & 6 & 0 \\
 0 & 0 & 1
 \end{pmatrix}
-\begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix}
-= \mathbf{0}
+\begin{pmatrix}
+v_1 \\
+v_2 \\
+v_3
+\end{pmatrix}
+=
+\mathbf{0}
 $$
 
 **행별 전개:**
 
 $$
-\text{행 1}:\quad 6v_1 + 6v_2 + 0 \cdot v_3 = 0
-\quad\Rightarrow\quad v_1 = -v_2
+\text{행 1}:\quad 6v_1 + 6v_2 + 0\cdot v_3 = 0
+\quad\Rightarrow\quad
+v_1 = -v_2
 $$
 
 $$
-\text{행 2}:\quad 6v_1 + 6v_2 + 0 \cdot v_3 = 0
-\qquad (\text{행 1과 동일, 추가 정보 없음})
+\text{행 2}:\quad 6v_1 + 6v_2 + 0\cdot v_3 = 0
+\qquad
+(\text{행 1과 동일, 추가 정보 없음})
 $$
 
 $$
-\text{행 3}:\quad 0 \cdot v_1 + 0 \cdot v_2 + 1 \cdot v_3 = 0
-\quad\Rightarrow\quad v_3 = 0
+\text{행 3}:\quad 0\cdot v_1 + 0\cdot v_2 + 1\cdot v_3 = 0
+\quad\Rightarrow\quad
+v_3 = 0
 $$
 
 **가우스 소거:**
@@ -450,13 +534,20 @@ R_2 \leftarrow R_2 - R_1
 0 & 0 & 0 \\
 0 & 0 & 1
 \end{pmatrix}
-\quad \text{rank} = 2, \text{ 자유변수 1개}
+\quad
+\text{rank} = 2,\ \text{자유변수 1개}
 $$
 
-$v_2 = t$ (자유변수)로 놓으면 $v_1 = -t,\ v_3 = 0$. $t = 1$을 대입하면:
+$v_2 = t$ (자유변수)로 놓으면 $v_1 = -t,\ v_3 = 0$.  
+$t = 1$을 대입하면
 
 $$
-\mathbf{v}_3^{*} = \begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix},
+\mathbf{v}_3^{*} =
+\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix},
 \qquad
 \|\mathbf{v}_3^{*}\| = \sqrt{(-1)^2 + 1^2 + 0^2} = \sqrt{2}
 $$
@@ -465,14 +556,25 @@ $$
 
 $$
 \boxed{
-\mathbf{v}_3 = \frac{1}{\sqrt{2}}\begin{pmatrix} -1 \\ 1 \\ 0 \end{pmatrix}
-= \begin{pmatrix} -0.7071 \\ 0.7071 \\ 0 \end{pmatrix}
+\mathbf{v}_3 =
+\frac{1}{\sqrt{2}}
+\begin{pmatrix}
+-1 \\
+1 \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+-0.7071 \\
+0.7071 \\
+0
+\end{pmatrix}
 }
 $$
 
-> **해석:** $v_1 = -\frac{1}{\sqrt{2}}$ (수학), $v_2 = +\frac{1}{\sqrt{2}}$ (과학), $v_3 = 0$ (영어)  
+> **해석:** $v_1 = -\frac{1}{\sqrt{2}}$ (수학), $v_2 = \frac{1}{\sqrt{2}}$ (과학), $v_3 = 0$ (영어)  
 > → 과학에서 수학을 뺀 차이 방향  
-> → 영어는 이 주성분에 기여하지 않는다
+> → 영어는 이 주성분에 기여하지 않는다.
 
 ---
 
@@ -480,26 +582,40 @@ $$
 
 $$
 \mathbf{v}_1 \cdot \mathbf{v}_2
-= \frac{1}{\sqrt{2}} \cdot 0
-+ \frac{1}{\sqrt{2}} \cdot 0
-+ 0 \cdot 1
-= 0 \quad \checkmark
+=
+\frac{1}{\sqrt{2}}\cdot 0
++
+\frac{1}{\sqrt{2}}\cdot 0
++
+0\cdot 1
+= 0
+\quad \checkmark
 $$
 
 $$
 \mathbf{v}_1 \cdot \mathbf{v}_3
-= \frac{1}{\sqrt{2}} \cdot \left( -\frac{1}{\sqrt{2}} \right)
-+ \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}}
-+ 0 \cdot 0
-= -\frac{1}{2} + \frac{1}{2} = 0 \quad \checkmark
+=
+\frac{1}{\sqrt{2}}\cdot\left(-\frac{1}{\sqrt{2}}\right)
++
+\frac{1}{\sqrt{2}}\cdot\frac{1}{\sqrt{2}}
++
+0\cdot 0
+=
+-\frac{1}{2} + \frac{1}{2}
+= 0
+\quad \checkmark
 $$
 
 $$
 \mathbf{v}_2 \cdot \mathbf{v}_3
-= 0 \cdot \left( -\frac{1}{\sqrt{2}} \right)
-+ 0 \cdot \frac{1}{\sqrt{2}}
-+ 1 \cdot 0
-= 0 \quad \checkmark
+=
+0\cdot\left(-\frac{1}{\sqrt{2}}\right)
++
+0\cdot\frac{1}{\sqrt{2}}
++
+1\cdot 0
+= 0
+\quad \checkmark
 $$
 
 세 고유벡터는 서로 직교하는 단위벡터, 즉 **정규직교(orthonormal)** 기저를 이룬다.
@@ -514,9 +630,9 @@ $$
 
 | 주성분 | 고유값 | 기여율 | 누적 기여율 | 방향 해석 |
 |:------:|:------:|:------:|:-----------:|-----------|
-| PC1 | 16 | **64.0%** | 64.0%     | 수학·과학 합산 방향 |
-| PC2 |  5 | **20.0%** | **84.0%** | 영어 독립 방향      |
-| PC3 |  4 | 16.0%     | 100.0%    | 과학·수학 차이 방향 |
+| PC1 | 16 | **64.0%** | 64.0% | 수학·과학 합산 방향 |
+| PC2 | 5 | **20.0%** | **84.0%** | 영어 독립 방향 |
+| PC3 | 4 | 16.0% | 100.0% | 과학·수학 차이 방향 |
 
 PC1 + PC2 두 개로 전체 분산의 **84%** 보존 가능하다.
 
@@ -527,96 +643,115 @@ PC1 + PC2 두 개로 전체 분산의 **84%** 보존 가능하다.
 주성분 점수는 고유벡터를 가중치로 삼은 중심화 원점수의 선형결합이다.
 
 $$
-\text{PC}_k = \mathbf{v}_k^T \tilde{\mathbf{x}}
+\mathrm{PC}_k = \mathbf{v}_k^T \tilde{\mathbf{x}}
 = v_{k1}(X_1 - \bar{X}_1) + v_{k2}(X_2 - \bar{X}_2) + v_{k3}(X_3 - \bar{X}_3)
 $$
-
----
 
 ### PC1 — "수학 + 과학" 합산 방향
 
 $$
-\mathbf{v}_1 = \begin{pmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \\ 0 \end{pmatrix}
+\mathbf{v}_1 =
+\begin{pmatrix}
+\frac{1}{\sqrt{2}} \\
+\frac{1}{\sqrt{2}} \\
+0
+\end{pmatrix}
 $$
 
 $$
 \boxed{
-\text{PC1}
-= \frac{1}{\sqrt{2}}(X_1 - 50) + \frac{1}{\sqrt{2}}(X_2 - 60) + 0 \cdot (X_3 - 70)
+\mathrm{PC1}
+= \frac{1}{\sqrt{2}}(X_1 - 50) + \frac{1}{\sqrt{2}}(X_2 - 60) + 0\cdot(X_3 - 70)
 = \frac{(X_1 - 50) + (X_2 - 60)}{\sqrt{2}}
 }
 $$
 
-- $X_3$(영어) 계수 = 0 이므로 영어 점수는 PC1에 전혀 기여하지 않는다
-- $X_1$(수학)과 $X_2$(과학) 계수가 모두 $\frac{1}{\sqrt{2}}$ 로 동일하다 → **동등한 비중**으로 합산
-- 수학과 과학이 평균 이상일수록 PC1 값이 크다
+- $X_3$(영어) 계수 = 0 이므로 영어 점수는 PC1에 전혀 기여하지 않는다.
+- $X_1$(수학)과 $X_2$(과학) 계수가 모두 $\frac{1}{\sqrt{2}}$로 동일하다 → **동등한 비중**으로 합산.
+- 수학과 과학이 평균 이상일수록 PC1 값이 크다.
 
 수치 확인 (학생 A):
 
 $$
-\text{PC1}_A = \frac{(54-50) + (64-60)}{\sqrt{2}} = \frac{4 + 4}{\sqrt{2}} = \frac{8}{\sqrt{2}} = 4\sqrt{2} \approx 5.657
+\mathrm{PC1}_A
+= \frac{(54-50) + (64-60)}{\sqrt{2}}
+= \frac{4 + 4}{\sqrt{2}}
+= \frac{8}{\sqrt{2}}
+= 4\sqrt{2}
+\approx 5.657
 $$
-
----
 
 ### PC2 — "영어" 독립 방향
 
 $$
-\mathbf{v}_2 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+\mathbf{v}_2 =
+\begin{pmatrix}
+0 \\
+0 \\
+1
+\end{pmatrix}
 $$
 
 $$
 \boxed{
-\text{PC2}
-= 0 \cdot (X_1 - 50) + 0 \cdot (X_2 - 60) + 1 \cdot (X_3 - 70)
+\mathrm{PC2}
+= 0\cdot(X_1 - 50) + 0\cdot(X_2 - 60) + 1\cdot(X_3 - 70)
 = X_3 - 70
 }
 $$
 
-- $X_1$(수학), $X_2$(과학) 계수 = 0 이므로 수학·과학은 PC2에 전혀 기여하지 않는다
-- PC2 = 영어 점수의 평균 편차 그 자체
-- Cov($X_3$, $X_1$) = Cov($X_3$, $X_2$) = 0 이기 때문에  
-  PCA가 영어를 별도 축으로 독립 분리한 결과
+- $X_1$(수학), $X_2$(과학) 계수 = 0 이므로 수학·과학은 PC2에 전혀 기여하지 않는다.
+- PC2 = 영어 점수의 평균 편차 그 자체.
+- $\mathrm{Cov}(X_3, X_1) = \mathrm{Cov}(X_3, X_2) = 0$ 이기 때문에 PCA가 영어를 별도 축으로 독립 분리한 결과이다.
 
 수치 확인 (학생 E):
 
 $$
-\text{PC2}_E = 66 - 70 = -4
+\mathrm{PC2}_E = 66 - 70 = -4
 $$
-
----
 
 ### PC3 — "과학 − 수학" 차이 방향
 
 $$
-\mathbf{v}_3 = \begin{pmatrix} -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \\ 0 \end{pmatrix}
+\mathbf{v}_3 =
+\begin{pmatrix}
+-\frac{1}{\sqrt{2}} \\
+\frac{1}{\sqrt{2}} \\
+0
+\end{pmatrix}
 $$
 
 $$
 \boxed{
-\text{PC3}
-= -\frac{1}{\sqrt{2}}(X_1 - 50) + \frac{1}{\sqrt{2}}(X_2 - 60) + 0 \cdot (X_3 - 70)
+\mathrm{PC3}
+= -\frac{1}{\sqrt{2}}(X_1 - 50) + \frac{1}{\sqrt{2}}(X_2 - 60) + 0\cdot(X_3 - 70)
 = \frac{(X_2 - 60) - (X_1 - 50)}{\sqrt{2}}
 }
 $$
 
-- 과학(+) vs 수학(-) 방향 → 수학보다 과학을 잘할수록 PC3 값이 크다
-- 분산 $\lambda_3 = 4$ 로 가장 작아 제거 후보 (전체의 16%만 설명)
-- $X_3$(영어) 계수 = 0 이므로 영어는 PC3에도 기여하지 않는다
-
----
+- 과학(+) vs 수학(-) 방향 → 수학보다 과학을 잘할수록 PC3 값이 크다.
+- 분산 $\lambda_3 = 4$로 가장 작아 제거 후보이다 (전체의 16%만 설명).
+- $X_3$(영어) 계수 = 0 이므로 영어는 PC3에도 기여하지 않는다.
 
 ### 세 주성분의 관계식 요약
 
 $$
-\begin{pmatrix} \text{PC1} \\ \text{PC2} \\ \text{PC3} \end{pmatrix}
+\begin{pmatrix}
+\mathrm{PC1} \\
+\mathrm{PC2} \\
+\mathrm{PC3}
+\end{pmatrix}
 =
 \begin{pmatrix}
 \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 \\
 0 & 0 & 1 \\
 -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0
 \end{pmatrix}
-\begin{pmatrix} X_1 - 50 \\ X_2 - 60 \\ X_3 - 70 \end{pmatrix}
+\begin{pmatrix}
+X_1 - 50 \\
+X_2 - 60 \\
+X_3 - 70
+\end{pmatrix}
 $$
 
 | 주성분 | 수학 $X_1$ 계수 | 과학 $X_2$ 계수 | 영어 $X_3$ 계수 | 의미 |
@@ -632,7 +767,8 @@ $$
 PC1, PC2 두 개로 투영 (분산 84% 보존):
 
 $$
-W = \begin{pmatrix}
+W =
+\begin{pmatrix}
 \frac{1}{\sqrt{2}} & 0 \\
 \frac{1}{\sqrt{2}} & 0 \\
 0 & 1
@@ -640,14 +776,14 @@ W = \begin{pmatrix}
 $$
 
 $$
-Z = \tilde{X}\,W
+Z = \tilde{X}W
 =
 \begin{pmatrix}
- 4 &  4 &  1 \\
--4 & -4 &  1 \\
- 2 & -2 &  1 \\
--2 &  2 &  1 \\
- 0 &  0 & -4
+4 & 4 & 1 \\
+-4 & -4 & 1 \\
+2 & -2 & 1 \\
+-2 & 2 & 1 \\
+0 & 0 & -4
 \end{pmatrix}
 \begin{pmatrix}
 \frac{1}{\sqrt{2}} & 0 \\
@@ -659,12 +795,15 @@ $$
 학생 A의 PC 점수 계산 (예시):
 
 $$
-z_{A,1} = 4 \cdot \frac{1}{\sqrt{2}} + 4 \cdot \frac{1}{\sqrt{2}} + 1 \cdot 0
-= \frac{8}{\sqrt{2}} = 4\sqrt{2} \approx 5.657
+z_{A,1}
+= 4\cdot\frac{1}{\sqrt{2}} + 4\cdot\frac{1}{\sqrt{2}} + 1\cdot 0
+= \frac{8}{\sqrt{2}}
+= 4\sqrt{2}
+\approx 5.657
 $$
 
 $$
-z_{A,2} = 4 \cdot 0 + 4 \cdot 0 + 1 \cdot 1 = 1
+z_{A,2} = 4\cdot 0 + 4\cdot 0 + 1\cdot 1 = 1
 $$
 
 전체 주성분 점수:
@@ -675,15 +814,16 @@ $$
 | B | -4 | -4 | +1 | $\frac{-8}{\sqrt{2}} \approx -5.657$ | +1 |
 | C | +2 | -2 | +1 | $\frac{0}{\sqrt{2}} = 0$ | +1 |
 | D | -2 | +2 | +1 | $\frac{0}{\sqrt{2}} = 0$ | +1 |
-| E |  0 |  0 | -4 | $\frac{0}{\sqrt{2}} = 0$ | -4 |
+| E | 0 | 0 | -4 | $\frac{0}{\sqrt{2}} = 0$ | -4 |
 
 $$
-Z = \begin{pmatrix}
- 5.657 &  1 \\
--5.657 &  1 \\
- 0     &  1 \\
- 0     &  1 \\
- 0     & -4
+Z =
+\begin{pmatrix}
+5.657 & 1 \\
+-5.657 & 1 \\
+0 & 1 \\
+0 & 1 \\
+0 & -4
 \end{pmatrix}
 $$
 
@@ -699,7 +839,7 @@ C, D는 수학·과학 합이 평균 수준이나 서로 점수 차이가 있다
 ### ① 무상관 변수는 독립적인 주성분으로 분리된다
 
 $$
-\text{Cov}(X_3, X_1) = \text{Cov}(X_3, X_2) = 0
+\mathrm{Cov}(X_3, X_1) = \mathrm{Cov}(X_3, X_2) = 0
 \quad\Longrightarrow\quad
 \mathbf{v}_2 = \mathbf{e}_3 = (0,\ 0,\ 1)^T
 $$
@@ -713,24 +853,28 @@ $X_1$(수학)과 $X_2$(과학) 사이에 Cov = 6 (양의 상관)이 있으므로
 PCA는 이 상관을 제거하는 두 축을 찾는다.
 
 $$
-\text{PC1} = \frac{(X_1-50) + (X_2-60)}{\sqrt{2}} \quad (\text{합, 분산 최대})
+\mathrm{PC1} = \frac{(X_1-50) + (X_2-60)}{\sqrt{2}}
+\quad
+(\text{합, 분산 최대})
 $$
 
 $$
-\text{PC3} = \frac{(X_2-60) - (X_1-50)}{\sqrt{2}} \quad (\text{차, 분산 최소})
+\mathrm{PC3} = \frac{(X_2-60) - (X_1-50)}{\sqrt{2}}
+\quad
+(\text{차, 분산 최소})
 $$
 
 고유값과 공분산의 관계:
 
 $$
-\lambda_1 = \text{Var}(X_1) + \text{Cov}(X_1, X_2) = 10 + 6 = \mathbf{16}
+\lambda_1 = \mathrm{Var}(X_1) + \mathrm{Cov}(X_1, X_2) = 10 + 6 = \mathbf{16}
 $$
 
 $$
-\lambda_3 = \text{Var}(X_1) - \text{Cov}(X_1, X_2) = 10 - 6 = \mathbf{4}
+\lambda_3 = \mathrm{Var}(X_1) - \mathrm{Cov}(X_1, X_2) = 10 - 6 = \mathbf{4}
 $$
 
-> 대칭행렬 $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$ 의 고유값은 항상 $a+b$ 와 $a-b$ 이다.
+> 대칭행렬 $\begin{pmatrix} a & b \\ b & a \end{pmatrix}$의 고유값은 항상 $a+b$와 $a-b$이다.
 
 ### ③ 세 예제 비교
 
@@ -768,7 +912,7 @@ print("공분산 행렬:\n", cov)
 # 고유값 분해
 eigenvalues, eigenvectors = np.linalg.eigh(cov)
 idx = np.argsort(eigenvalues)[::-1]
-eigenvalues  = eigenvalues[idx]
+eigenvalues = eigenvalues[idx]
 eigenvectors = eigenvectors[:, idx]
 
 print("고유값:", eigenvalues)
@@ -781,7 +925,7 @@ print("고유벡터:\n", np.round(eigenvectors, 4))
 
 ratio = eigenvalues / eigenvalues.sum() * 100
 print("기여율:", np.round(ratio, 2))
-# [64.  20.  16.]
+# [64. 20. 16.]
 
 W = eigenvectors[:, :2]
 Z = (X - X.mean(axis=0)) @ W
@@ -791,4 +935,3 @@ print("주성분 점수:\n", np.round(Z, 4))
 #  [ 0.      1.    ]
 #  [ 0.      1.    ]
 #  [ 0.     -4.    ]]
-```
